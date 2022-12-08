@@ -8,6 +8,7 @@ import beans.Usuario;
 import conexao.ConexaoSql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -27,7 +28,7 @@ public class UsuarioDAO {
         this.conn = this.conexao.getConexao();
     }
     
-    //Query inserir
+    //Query inserir (create)
     public void inserir(Usuario usuario){
         String sql = "INSERT INTO login(login,senha,nivel) VALUES"
                 + "(?, ?, ?)";
@@ -41,6 +42,28 @@ public class UsuarioDAO {
         catch(SQLException e){
             //se deu erro na hora de conectar
             System.out.println("Erro ao inserir Usuário: " +e.getMessage());
+        }
+    }
+    
+    //Query select (read)
+    public Usuario getUsuario(String login){
+        String sql = "SELECT * FROM login WHERE ra = ?";
+        try{
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setString(1, login);                   //Obtem o login
+            ResultSet rs = stmt.executeQuery();              //roda o comando no mysql
+            Usuario usuario = new Usuario();
+            //Primeiramente, posiciona o ResultSet na primeira posição
+            rs.first();
+            usuario.setRa(rs.getInt("ra"));
+            usuario.setLogin(login);
+            usuario.setSenha(rs.getString("senha"));
+            usuario.setNivel(rs.getInt("nivel"));
+            return usuario;
+        }
+        catch(SQLException e){
+            //se deu erro na hora de conectar
+            return null;
         }
     }
 }

@@ -18,7 +18,7 @@ public class Usuario {
         return ra;
     }
 
-    public void setId(int ra) {
+    public void setRa(int ra) {
         this.ra = ra;
     }
 

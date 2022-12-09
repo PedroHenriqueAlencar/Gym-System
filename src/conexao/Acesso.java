@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package conexao;
+import beans.Usuario;
+import dao.UsuarioDAO;
 import javax.swing.JOptionPane;
 /**
  *
@@ -43,13 +45,14 @@ public class Acesso {
     {
         this.login = JOptionPane.showInputDialog(null,"Digite seu usuário de acesso:");
         this.senha = JOptionPane.showInputDialog(null,"Digite sua senha de acesso:");
+        validarAcesso(login, senha);
         if(validarAcesso(login, senha)){
             this.logado = true;
             JOptionPane.showMessageDialog(null,"Acesso validado com sucesso!");
         }
         else
         {
-            JOptionPane.showMessageDialog(null,"Usuário ou senha inválidos! Tente novamente!");
+            JOptionPane.showMessageDialog(null,"Não foi possível validar acesso, revise seus dados!");
         }
     }
     
@@ -57,7 +60,13 @@ public class Acesso {
     public boolean validarAcesso(String login, String senha)
     {
         JOptionPane.showMessageDialog(null,"Aguarde... validando acesso!");
-        return login.equals(login) && senha.equals(senha);
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.getUsuario(login);
+        
+        if(usuario == null)
+            JOptionPane.showMessageDialog(null,"Usuário ou senha inválidos! Tente novamente!");
+        
+        return !(!usuario.getLogin().equals(login) && !usuario.getSenha().equals(senha));
     }
     
     /*--Deslogar--*/

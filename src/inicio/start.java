@@ -5,7 +5,9 @@
 package inicio;
 import javax.swing.JOptionPane;
 import beans.Usuario;
+import conexao.Acesso;
 import dao.UsuarioDAO;
+import java.util.List;
 
 /**
  *
@@ -17,18 +19,40 @@ public class start {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-       // acesso ace = new acesso();
-       // ace.efetuarLogin();
-       // ace.setLogin("teste");
-       // ace.setSenha("teste");
-        Usuario usuario = new Usuario();
-        usuario.setLogin("Pedro");
-        usuario.setSenha("alencar9719");
-        usuario.setNivel(1);
+        //TESTAR A VALIDAÇÂO DE LOGIN
+        //Acesso acesso = new Acesso();
+        //acesso.efetuarLogin();
         
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuarioDAO.inserir(usuario);
+        //TESTAR O CADASTRO DE CONTA DO FUNCIONARIO
+        //Usuario usuario = new Usuario();
+        //usuario.setLogin("ADMINISTRADOR");
+        //usuario.setSenha("ADMINISTRAODR");
+        //usuario.setNivel(1);
+        //UsuarioDAO usuarioDAO = new UsuarioDAO();
+        //usuarioDAO.inserir(usuario);
+        
+        //TESTAR A ATUALIZAÇÃO DE DADOS DA CONTA DO FUNCIONARIO
+        //String login = JOptionPane.showInputDialog(null,"Digite o login da conta que deseja alterar os dados:");
+        //UsuarioDAO usuarioDAO = new UsuarioDAO();
+        //Usuario usuario = usuarioDAO.getUsuario(login);
+        //usuario.setSenha("Manuel");
+        //usuarioDAO.editar(usuario,1);
+        
+        //TESTAR A EXCLUSÃO DE DADOS DO LOGIN DO FUNCIONARIO
+        //int ra = Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o RA da conta que deseja alterar os dados:"));
+        //UsuarioDAO usuarioDAO = new UsuarioDAO();
+        //usuarioDAO.excluir(1000001);
+        
+        //TESTAR A LISTAGEM DE DADOS DA TABELA LOGIN
+        //UsuarioDAO usuarioDAO = new UsuarioDAO();
+        //List<Usuario> listaUsuario = usuarioDAO.getUsuario();
+        //for(Usuario u : listaUsuario)
+        //{
+        //    JOptionPane.showMessageDialog(null,"RA:" + u.getRa());
+        //    JOptionPane.showMessageDialog(null,"Login:" + u.getLogin());
+        //    JOptionPane.showMessageDialog(null,"Senha:" + u.getSenha());
+        //    JOptionPane.showMessageDialog(null,"Nivel:" + u.getNivel());
+        //}
         
         JOptionPane.showMessageDialog(null,"Fim de Programa!");
     }

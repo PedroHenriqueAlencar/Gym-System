@@ -64,9 +64,6 @@ public class Acesso {
         String LogLogin = usuario.getLogin();
         String LogSenha = usuario.getSenha();
         
-        if(usuario == null)
-            JOptionPane.showMessageDialog(null,"Usuário ou senha inválidos! Tente novamente!");
-        
         return !(!LogLogin.equals(login) || !LogSenha.equals(senha));
     }
     

@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -65,6 +66,8 @@ public class UsuarioDAO {
         }
         catch(SQLException e){
             //se deu erro na hora de conectar
+            JOptionPane.showMessageDialog(null,"Usuário não existe!");
+            System.out.println("Erro ao buscar Usuário: " +e.getMessage());
             return null;
         }
     }
@@ -96,8 +99,6 @@ public class UsuarioDAO {
     }
     
     //Query excluir (delete)
-    //Select mode 0 (edita o usuário buscando o RA
-    //Select mode 1 (edita o usuário buscando o Login
     public void excluir(int ra){
         String sql = "DELETE FROM login WHERE ra=?";
         try{

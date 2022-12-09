@@ -45,7 +45,6 @@ public class Acesso {
     {
         this.login = JOptionPane.showInputDialog(null,"Digite seu usuário de acesso:");
         this.senha = JOptionPane.showInputDialog(null,"Digite sua senha de acesso:");
-        validarAcesso(login, senha);
         if(validarAcesso(login, senha)){
             this.logado = true;
             JOptionPane.showMessageDialog(null,"Acesso validado com sucesso!");

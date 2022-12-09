@@ -61,11 +61,13 @@ public class Acesso {
         JOptionPane.showMessageDialog(null,"Aguarde... validando acesso!");
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.getUsuario(login);
+        String LogLogin = usuario.getLogin();
+        String LogSenha = usuario.getSenha();
         
         if(usuario == null)
             JOptionPane.showMessageDialog(null,"Usuário ou senha inválidos! Tente novamente!");
         
-        return !(!usuario.getLogin().equals(login) && !usuario.getSenha().equals(senha));
+        return !(!LogLogin.equals(login) || !LogSenha.equals(senha));
     }
     
     /*--Deslogar--*/

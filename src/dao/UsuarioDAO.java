@@ -44,7 +44,7 @@ public class UsuarioDAO {
         }
         catch(SQLException e){
             //se deu erro na hora de conectar
-            System.out.println("Erro ao inserir Usuário: " +e.getMessage());
+            System.out.println("Erro ao inserir Usuario: " +e.getMessage());
         }
     }
     
@@ -66,8 +66,8 @@ public class UsuarioDAO {
         }
         catch(SQLException e){
             //se deu erro na hora de conectar
-            JOptionPane.showMessageDialog(null,"Usuário não existe!");
-            System.out.println("Erro ao buscar Usuário: " +e.getMessage());
+            JOptionPane.showMessageDialog(null,"Usuario não existe!");
+            System.out.println("Erro ao buscar Usuario: " +e.getMessage());
             return null;
         }
     }
@@ -94,7 +94,7 @@ public class UsuarioDAO {
         }
         catch(SQLException e){
             //se deu erro na hora de conectar
-            System.out.println("Erro ao atualizar Usuário: " +e.getMessage());
+            System.out.println("Erro ao atualizar Usuario: " +e.getMessage());
         }
     }
     
@@ -108,7 +108,7 @@ public class UsuarioDAO {
         }
         catch(SQLException e){
             //se deu erro na hora de conectar
-            System.out.println("Erro ao excluir Usuário: " +e.getMessage());
+            System.out.println("Erro ao excluir Usuario: " +e.getMessage());
         }
     }
     
@@ -134,7 +134,8 @@ public class UsuarioDAO {
         }
         catch(SQLException e){
             //se deu erro na hora de conectar
-            System.out.println("Erro ao excluir Usuário: " +e.getMessage());
+            System.out.println("Erro ao listar Usuario: " +e.getMessage());
+            return null;
         }
     }
 }

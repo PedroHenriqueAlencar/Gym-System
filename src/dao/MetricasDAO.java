@@ -25,7 +25,7 @@ public class MetricasDAO {
     //Vou criar o Construtor da classe. O Construtor
     //é executado automaticamente sempre que um novo
     //objeto é criado.
-    // PessoaDAO pessoaDAO = new PessoaDAO();
+    // MetricasDAO metricasDAO = new MetricasDAO();
     public MetricasDAO(){
         this.conexao = new ConexaoSql();
         this.conn = this.conexao.getConexao();

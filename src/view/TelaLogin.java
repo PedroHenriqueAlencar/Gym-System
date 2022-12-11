@@ -13,7 +13,6 @@ import dao.UsuarioDAO;
  * @author pedro
  */
 public class TelaLogin extends javax.swing.JFrame {
-
     /**
      * Creates new form TelaLogin
      */
@@ -112,14 +111,21 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null,"Aguarde... validando acesso!");
+//        JOptionPane.showMessageDialog(null,"Aguarde... validando acesso!");
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.getUsuario(txtLogin.getText());
         
         if(!usuario.getSenha().equals(txtSenha.getText()))
+        {
             JOptionPane.showMessageDialog(null,"Não foi possível validar acesso, revise seus dados!");
+        }
         else
+        {
             JOptionPane.showMessageDialog(null,"Acesso validado com sucesso!");
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            telaPrincipal.setVisible(true);
+            TelaLogin.this.dispose();
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

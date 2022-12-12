@@ -4,6 +4,11 @@
  */
 package view;
 
+import view.funcionario.TelaCadastroFuncionario;
+import view.funcionario.TelaConsultarFuncionario;
+import view.funcionario.TelaExcluirFuncionario;
+import view.funcionario.TelaListarFuncionario;
+
 /**
  *
  * @author pedro
@@ -67,6 +72,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem1);
 
         jMenuItem2.setText("Consultar Funcionário");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem2);
 
         jMenuItem3.setText("Excluir Funcionário");
@@ -78,6 +88,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem3);
 
         jMenuItem4.setText("Lista de Funcionários");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem4);
 
         jMenuBar1.add(jMenu4);
@@ -161,14 +176,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Botão Excluir Funcionario
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+        TelaExcluirFuncionario tExcFuncionario = new TelaExcluirFuncionario();
+        tExcFuncionario.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    //Botão Cadastrar Funcionario
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        TelaCadastroFuncionario tCadFuncionario = new TelaCadastroFuncionario();
+        tCadFuncionario.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+    
+    //Botão Consultar Funcionario
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        TelaConsultarFuncionario tConFuncionario = new TelaConsultarFuncionario();
+        tConFuncionario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        TelaListarFuncionario tLisFuncionario = new TelaListarFuncionario();
+        tLisFuncionario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments

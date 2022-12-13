@@ -13,9 +13,9 @@ public class Pessoa {
     private int ra;
     private String nome;
     private String endereco;
-    private int cpf;
+    private String cpf;
     private String dataNasc;
-    private int telefone;
+    private String telefone;
     private String dataMatricula;
     private int personal;
 
@@ -51,11 +51,11 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -67,11 +67,11 @@ public class Pessoa {
         this.dataNasc = dataNasc;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

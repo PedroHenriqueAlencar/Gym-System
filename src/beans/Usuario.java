@@ -13,6 +13,7 @@ public class Usuario {
     private String login;
     private String senha;
     private int nivel;
+    private int acesso;
 
     public int getRa() {
         return ra;
@@ -44,5 +45,13 @@ public class Usuario {
 
     public void setNivel(int nivel) {
         this.nivel = nivel;
+    }
+    
+    public int getAcesso() {
+        return nivel;
+    }
+
+    public void setAcesso(int acesso) {
+        this.nivel = acesso;
     }
 }

@@ -4,6 +4,9 @@
  */
 package view;
 
+import beans.Usuario;
+import dao.UsuarioDAO;
+import javax.swing.JOptionPane;
 import view.funcionario.TelaCadastroFuncionario;
 import view.funcionario.TelaConsultarFuncionario;
 import view.funcionario.TelaExcluirFuncionario;
@@ -14,6 +17,8 @@ import view.funcionario.TelaListarFuncionario;
  * @author pedro
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+    private String TLogin;
+    private String TSenha;
 
     /**
      * Creates new form TelaPrincipal
@@ -21,6 +26,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    public String getTLogin() {
+        return TLogin;
+    }
+
+    public void setTLogin(String TLogin) {
+        this.TLogin = TLogin;
+    }
+
+    public String getTSenha() {
+        return TSenha;
+    }
+
+    public void setTSenha(String TSenha) {
+        this.TSenha = TSenha;
     }
 
     /**
@@ -180,31 +201,66 @@ public class TelaPrincipal extends javax.swing.JFrame {
     //Botão Excluir Funcionario
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        TelaExcluirFuncionario tExcFuncionario = new TelaExcluirFuncionario();
-        tExcFuncionario.setVisible(true);
+        if(jValidarLogin() == 1)
+        {
+            TelaExcluirFuncionario tExcFuncionario = new TelaExcluirFuncionario();
+            tExcFuncionario.setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Consulte o Administrador !");
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     //Botão Cadastrar Funcionario
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        TelaCadastroFuncionario tCadFuncionario = new TelaCadastroFuncionario();
-        tCadFuncionario.setVisible(true);
-        
+        if(jValidarLogin() == 1)
+        {
+            TelaCadastroFuncionario tCadFuncionario = new TelaCadastroFuncionario();
+            tCadFuncionario.setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Consulte o Administrador !");
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     
     //Botão Consultar Funcionario
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        TelaConsultarFuncionario tConFuncionario = new TelaConsultarFuncionario();
-        tConFuncionario.setVisible(true);
+        if(jValidarLogin() == 1)
+        {
+            TelaConsultarFuncionario tConFuncionario = new TelaConsultarFuncionario();
+            tConFuncionario.setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Consulte o Administrador !");
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        TelaListarFuncionario tLisFuncionario = new TelaListarFuncionario();
-        tLisFuncionario.setVisible(true);
+        if(jValidarLogin() == 1)
+        {
+            TelaListarFuncionario tLisFuncionario = new TelaListarFuncionario();
+            tLisFuncionario.setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Consulte o Administrador !");
+        }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-
+    
+    public int jValidarLogin()
+    {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.getUsuario(TLogin, 1);
+        if(usuario.getNivel() != 1)
+            return 0;
+        else
+            return 1;
+    }
     /**
      * @param args the command line arguments
      */

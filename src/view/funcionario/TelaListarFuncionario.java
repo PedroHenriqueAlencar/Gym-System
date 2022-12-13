@@ -4,16 +4,21 @@
  */
 package view.funcionario;
 
+import beans.Pessoa;
+import beans.Usuario;
+import dao.PessoaDAO;
+import dao.UsuarioDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author pedro
  */
 public class TelaListarFuncionario extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TelaListarFuncionario
-     */
-    public TelaListarFuncionario() {
+    
+    public TelaListarFuncionario()
+    {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -27,20 +32,16 @@ public class TelaListarFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblFuncionario = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Funcionários");
         setResizable(false);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("Listar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -52,8 +53,28 @@ public class TelaListarFuncionario extends javax.swing.JFrame {
         jLabel2.setText("Lista de Funcionários");
 
         jButton2.setText("Fechar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Limpar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        tblFuncionario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "RA", "Nome", "CPF", "Telefone", "Data de Matrícula"
+            }
+        ));
+        jScrollPane2.setViewportView(tblFuncionario);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,17 +83,17 @@ public class TelaListarFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 312, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -81,21 +102,59 @@ public class TelaListarFuncionario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(jButton1)
                     .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Listar
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        //Limpa a tabela
+        ((DefaultTableModel) tblFuncionario.getModel()).setRowCount(0);
+        //Criar uma var "PessoaDAO"
+        //Pegar os dados do Usuario da lista e jogar
+        //dentro da tabela
+        PessoaDAO pessoaDAO = new PessoaDAO();
+        List<Pessoa> listaFuncionario = pessoaDAO.getPessoa();
+        
+        DefaultTableModel tabelaFuncionario = (DefaultTableModel) tblFuncionario.getModel();
+        
+        //Percorrer o "listaFuncionario" e inserir na tabelaFuncionario
+        for(Pessoa u : listaFuncionario)
+        {
+            //Verifica se é funcionário
+            if(u.getPersonal() >= 1)
+            {
+                Object[] obj = new Object[]{
+                    u.getRa(),
+                    u.getNome(),
+                    u.getCpf(),
+                    u.getTelefone(),
+                    u.getDataMatricula()
+                };
+                tabelaFuncionario.addRow(obj);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    //Fechar
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        TelaListarFuncionario.this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    //Limpar
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        ((DefaultTableModel) tblFuncionario.getModel()).setRowCount(0); 
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,7 +196,7 @@ public class TelaListarFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblFuncionario;
     // End of variables declaration//GEN-END:variables
 }

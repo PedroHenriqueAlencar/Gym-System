@@ -40,9 +40,9 @@ public class PessoaDAO {
             stmt.setInt(1, pessoa.getRa());                     //gravar o RA
             stmt.setString(2, pessoa.getNome());                //gravar o nome
             stmt.setString(3, pessoa.getEndereco());            //gravar o endereço
-            stmt.setInt(4, pessoa.getCpf());                    //gravar o CPF
+            stmt.setString(4, pessoa.getCpf());                    //gravar o CPF
             stmt.setString(5, pessoa.getDataNasc());            //gravar a data de cascimento
-            stmt.setInt(6, pessoa.getTelefone());               //gravar o telefone
+            stmt.setString(6, pessoa.getTelefone());               //gravar o telefone
             stmt.setString(7, pessoa.getDataMatricula());       //gravar a data de matrícula
             stmt.setInt(8, pessoa.getPersonal());               //gravar se é personal
             stmt.execute();                                     //roda o comando no mysql
@@ -54,22 +54,41 @@ public class PessoaDAO {
     }
     
     //Query ler (read)
-    public Pessoa getPessoa(int ra){
-        String sql = "SELECT * FROM pessoa WHERE ra = ?";
+    //Modo 0 ler os valores do banco de dados pelo RA
+    //Modo 1 ler os valores do banco de dados pelo CPF
+    public Pessoa getPessoa(String chave, int mode){
+        String sql;
+        if(mode >= 1)
+            sql = "SELECT * FROM pessoa WHERE cpf = ?";
+        else
+            sql = "SELECT * FROM pessoa WHERE ra = ?";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setInt(1, ra);                              //Obtem o ra
-            ResultSet rs = stmt.executeQuery();              //roda o comando no mysql
+            
+            if(mode >= 1)
+                stmt.setString(1, chave);                       //Obtem o CPF
+            else
+                stmt.setInt(1, Integer.parseInt(chave));        //Obtem o ra
+            
+            ResultSet rs = stmt.executeQuery();                 //roda o comando no mysql
             Pessoa pessoa = new Pessoa();
             //Primeiramente, posiciona o ResultSet na primeira posição
             rs.first();
             pessoa.setId(rs.getInt("id"));
-            pessoa.setRa(rs.getInt(ra));
+            if(mode >= 1)
+            {
+                pessoa.setRa(rs.getInt("ra"));
+                pessoa.setCpf(chave);
+            }
+            else
+            {
+                pessoa.setRa(Integer.parseInt(chave));
+                pessoa.setCpf(rs.getString("cpf"));
+            }
             pessoa.setNome(rs.getString("nome"));
             pessoa.setEndereco(rs.getString("endereco"));
-            pessoa.setCpf(rs.getInt("cpf"));
             pessoa.setDataNasc(rs.getString("datanasc"));
-            pessoa.setTelefone(rs.getInt("telefone"));
+            pessoa.setTelefone(rs.getString("telefone"));
             pessoa.setDataMatricula(rs.getString("datamatricula"));
             pessoa.setPersonal(rs.getInt("personal"));
             return pessoa;
@@ -91,9 +110,9 @@ public class PessoaDAO {
             stmt.setInt(1, pessoa.getId());                 //atualiza o id
             stmt.setString(2, pessoa.getNome());            //atualiza o nome
             stmt.setString(3, pessoa.getEndereco());        //atualiza o endereço
-            stmt.setInt(4, pessoa.getCpf());                //atualiza o cpf
+            stmt.setString(4, pessoa.getCpf());                //atualiza o cpf
             stmt.setString(5, pessoa.getDataNasc());        //atualiza a data de nascimento
-            stmt.setInt(6, pessoa.getTelefone());           //atualiza o telefone
+            stmt.setString(6, pessoa.getTelefone());           //atualiza o telefone
             stmt.setString(7, pessoa.getDataMatricula());   //atualiza a data de matricula
             stmt.setInt(8, pessoa.getPersonal());           //atualiza se é personal
             stmt.setInt(9, pessoa.getRa());                 //seleciona o ra
@@ -135,9 +154,9 @@ public class PessoaDAO {
                 pessoa.setRa(rs.getInt("ra"));
                 pessoa.setNome(rs.getString("nome"));
                 pessoa.setEndereco(rs.getString("endereco"));
-                pessoa.setCpf(rs.getInt("cpf"));
+                pessoa.setCpf(rs.getString("cpf"));
                 pessoa.setDataNasc(rs.getString("datanasc"));
-                pessoa.setTelefone(rs.getInt("telefone"));
+                pessoa.setTelefone(rs.getString("telefone"));
                 pessoa.setDataMatricula(rs.getString("datamatricula"));
                 pessoa.setPersonal(rs.getInt("personal"));
                 listaPessoa.add(pessoa);

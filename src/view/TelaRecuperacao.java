@@ -111,13 +111,13 @@ public class TelaRecuperacao extends javax.swing.JFrame {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             Usuario usuario = usuarioDAO.getUsuario(txtLogin.getText(), 1);
             PessoaDAO pessoaDAO = new PessoaDAO();
-            Pessoa pessoa = pessoaDAO.getPessoa(txtLogin.getText(), 1);
+            Pessoa pessoa = pessoaDAO.getPessoa(Integer.toString(usuario.getRa()), 0);
             if(!(pessoa.getCpf().equals(txtLogin1.getText())) && !(pessoa.getDataNasc().equals(txtLogin2.getText())))
             {
                 JOptionPane.showMessageDialog(null,"Dados inconsistentes! Tente novamente!");
             }
             usuario.setSenha(pessoa.getCpf());
-            usuario.setAcesso(0);
+            usuario.setAcesso(1);
             usuarioDAO.editar(usuario, 0);
             JOptionPane.showMessageDialog(null,"Senha resetada com sucesso! Utilize seu CPF como senha quando for logar.");
         }

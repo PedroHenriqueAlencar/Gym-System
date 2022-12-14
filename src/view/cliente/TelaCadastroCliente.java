@@ -268,7 +268,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             mensalidade.setFormaPag("");
             mensalidadeDAO.inserir(mensalidade); 
 
-            JOptionPane.showMessageDialog(null,"Funcionário cadastrado com sucesso! Para ele acessar o sistema precisa digitar seu CPF como login e senha.");
+            JOptionPane.showMessageDialog(null,"Cliente cadastrado com sucesso.");
             TelaCadastroCliente.this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed

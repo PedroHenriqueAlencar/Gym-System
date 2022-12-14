@@ -30,6 +30,7 @@ import view.metricas.TelaListarMetricas;
 public class TelaPrincipal extends javax.swing.JFrame {
     private String TLogin;
     private String TSenha;
+    private String TRa;
     
 
     /**
@@ -56,7 +57,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.TSenha = TSenha;
     }
     
+    public String getTRa() {
+        return TRa;
+    }
 
+    public void setTRa(String TRa) {
+        this.TRa = TRa;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -279,7 +287,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     //Botão Excluir Funcionario
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        if(jValidarLogin() == 1)
+        if(jValidarLogin(true) == 1)
         {
             TelaExcluirFuncionario tExcFuncionario = new TelaExcluirFuncionario();
             tExcFuncionario.setVisible(true);
@@ -292,7 +300,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     //Botão Cadastrar Funcionario
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        if(jValidarLogin() == 1)
+        if(jValidarLogin(true) == 1)
         {
             TelaCadastroFuncionario tCadFuncionario = new TelaCadastroFuncionario();
             tCadFuncionario.setVisible(true);
@@ -306,7 +314,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     //Botão Consultar Funcionario
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        if(jValidarLogin() == 1)
+        if(jValidarLogin(true) == 1)
         {
             TelaConsultarFuncionario tConFuncionario = new TelaConsultarFuncionario();
             tConFuncionario.setVisible(true);
@@ -317,9 +325,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    //listar funcionario
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        if(jValidarLogin() == 1)
+        if(jValidarLogin(true) == 1)
         {
             TelaListarFuncionario tLisFuncionario = new TelaListarFuncionario();
             tLisFuncionario.setVisible(true);
@@ -423,15 +432,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Você deslogou do Gym-System! Até mais!");
     }//GEN-LAST:event_jMenuItem16ActionPerformed
     
-    public int jValidarLogin()
+    public int jValidarLogin(boolean RA)
     {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = usuarioDAO.getUsuario(TLogin, 1);
-        
-        if(usuario.getNivel() != 1)
-            return 0;
+        if(!RA)
+        {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            Usuario usuario = usuarioDAO.getUsuario(TLogin, 1);
+    
+            if(usuario.getNivel() != 1)
+                return 0;
+            else
+                return 1;
+        }
         else
-            return 1;
+        {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            Usuario usuario = usuarioDAO.getUsuario(TRa, 0);
+    
+            if(usuario.getNivel() != 1)
+                return 0;
+            else
+                return 1;
+        }
     }
     
     public void jValidarAcesso(Usuario usuario)
@@ -441,11 +463,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 TelaConsultarFuncionarioPAcesso pAcesso = new TelaConsultarFuncionarioPAcesso();
                 pAcesso.PriAcesso(usuario);
                 pAcesso.setVisible(true);
-                JOptionPane.showMessageDialog(null,"Este é seu primeiro acesso! Por favor altere seus dados cadastrais!");
+                JOptionPane.showMessageDialog(null,"Por favor altere seus dados cadastrais!");
                 TelaPrincipal.this.dispose();
         }
     }
-    
     /**
      * @param args the command line arguments
      */

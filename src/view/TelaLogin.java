@@ -138,6 +138,7 @@ public class TelaLogin extends javax.swing.JFrame {
             TelaPrincipal telaPrincipal = new TelaPrincipal();
             telaPrincipal.setTLogin(txtLogin.getText());
             telaPrincipal.setTSenha(txtSenha.getText());
+            telaPrincipal.setTRa(Integer.toString(usuario.getRa()));
             telaPrincipal.setVisible(true);
             telaPrincipal.jValidarAcesso(usuario);
             TelaLogin.this.dispose();

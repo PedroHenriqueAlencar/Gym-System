@@ -33,7 +33,7 @@ public class UsuarioDAO {
     
     //Query inserir (create)
     public void inserir(Usuario usuario){
-        String sql = "INSERT INTO login(login,senha,nivel) VALUES"
+        String sql = "INSERT INTO login(login,senha,nivel,acesso) VALUES"
                 + "(?, ?, ?, ?)";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);

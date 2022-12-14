@@ -7,10 +7,21 @@ package view;
 import beans.Usuario;
 import dao.UsuarioDAO;
 import javax.swing.JOptionPane;
+import view.cliente.TelaCadastroCliente;
+import view.cliente.TelaConsultarCliente;
+import view.cliente.TelaExcluirCliente;
+import view.cliente.TelaListarCliente;
 import view.funcionario.TelaCadastroFuncionario;
 import view.funcionario.TelaConsultarFuncionario;
+import view.funcionario.TelaConsultarFuncionarioPAcesso;
 import view.funcionario.TelaExcluirFuncionario;
 import view.funcionario.TelaListarFuncionario;
+import view.mensalidade.ListarPagamento;
+import view.mensalidade.TelaPagamento;
+import view.metricas.TelaCadastroMetricas;
+import view.metricas.TelaConsultarMetricas;
+import view.metricas.TelaExcluirMetricas;
+import view.metricas.TelaListarMetricas;
 
 /**
  *
@@ -19,6 +30,7 @@ import view.funcionario.TelaListarFuncionario;
 public class TelaPrincipal extends javax.swing.JFrame {
     private String TLogin;
     private String TSenha;
+    
 
     /**
      * Creates new form TelaPrincipal
@@ -43,6 +55,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void setTSenha(String TSenha) {
         this.TSenha = TSenha;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,15 +135,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Cliente");
 
         jMenuItem5.setText("Cadastrar Cliente");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuItem6.setText("Consultar Cliente");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem6);
 
         jMenuItem7.setText("Excluir Cliente");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem7);
 
         jMenuItem8.setText("Lista de Clientes");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem8);
 
         jMenuBar1.add(jMenu1);
@@ -139,9 +172,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Mensalidade");
 
         jMenuItem9.setText("Consultar Mensalidade");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem9);
 
         jMenuItem10.setText("Lista de Mensalidades");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem10);
 
         jMenuBar1.add(jMenu2);
@@ -150,15 +193,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Métricas");
 
         jMenuItem11.setText("Cadastrar Métrica");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem11);
 
         jMenuItem12.setText("Consultar Métrica");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem12);
 
         jMenuItem13.setText("Excluir Métrica");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem13);
 
         jMenuItem14.setText("Lista de Métrica");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem14);
 
         jMenuBar1.add(jMenu3);
@@ -167,6 +230,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu5.setText("Sobre");
 
         jMenuItem15.setText("Gym-System");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem15);
 
         jMenuBar1.add(jMenu5);
@@ -175,9 +243,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu6.setText("Sair");
 
         jMenuItem16.setText("Deslogar");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem16);
 
         jMenuItem17.setText("Fechar");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem17);
 
         jMenuBar1.add(jMenu6);
@@ -251,16 +329,123 @@ public class TelaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Consulte o Administrador !");
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    //Cadastro Cliente
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroCliente tCadCliente = new TelaCadastroCliente();
+        tCadCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    //Consultar Cliente
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        TelaConsultarCliente tConCliente = new TelaConsultarCliente();
+        tConCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    //Excluir Cliente
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        TelaExcluirCliente tExcCliente = new TelaExcluirCliente();
+        tExcCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    //Listar Cliente
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        TelaListarCliente tLisCliente = new TelaListarCliente();
+        tLisCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    //Consultar Mensalidade
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        TelaPagamento tPagamento = new TelaPagamento();
+        tPagamento.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    //Listar Mensalidade
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+        ListarPagamento lPagamento = new ListarPagamento();
+        lPagamento.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    
+    //Cadastrar
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroMetricas tCadMetricas = new TelaCadastroMetricas();
+        tCadMetricas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    //Consultar
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        TelaConsultarMetricas tConMetricas = new TelaConsultarMetricas();
+        tConMetricas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    //Excluir
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        TelaExcluirMetricas tExcMetricas = new TelaExcluirMetricas();
+        tExcMetricas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    //Listar Metricas 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        TelaListarMetricas tListMetricas = new TelaListarMetricas();
+        tListMetricas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    //Sobre
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        TelaSobre tSobre = new TelaSobre();
+        tSobre.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    //Fechar Programa
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    //Deslogar
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        TelaLogin tLogin = new TelaLogin();
+        tLogin.setVisible(true);
+        TelaPrincipal.this.dispose();
+        JOptionPane.showMessageDialog(null,"Você deslogou do Gym-System! Até mais!");
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
     
     public int jValidarLogin()
     {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.getUsuario(TLogin, 1);
+        
         if(usuario.getNivel() != 1)
             return 0;
         else
             return 1;
     }
+    
+    public void jValidarAcesso(Usuario usuario)
+    {
+        if(usuario.getAcesso() != 0)
+        {
+                TelaConsultarFuncionarioPAcesso pAcesso = new TelaConsultarFuncionarioPAcesso();
+                pAcesso.PriAcesso(usuario);
+                pAcesso.setVisible(true);
+                JOptionPane.showMessageDialog(null,"Este é seu primeiro acesso! Por favor altere seus dados cadastrais!");
+                TelaPrincipal.this.dispose();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -66,7 +66,7 @@ public class MetricasDAO {
             Metricas metricas = new Metricas();
             //Primeiramente, posiciona o ResultSet na primeira posição
             rs.first();
-            metricas.setRa(rs.getInt(ra));
+            metricas.setRa(ra);
             metricas.setAltura(rs.getDouble("altura"));
             metricas.setPeso(rs.getDouble("peso"));
             metricas.setAbdomem(rs.getDouble("abdomem"));

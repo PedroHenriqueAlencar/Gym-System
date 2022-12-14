@@ -253,7 +253,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
             PessoaDAO pessoaDAO = new PessoaDAO();
             pessoaDAO.inserir(pessoa);
 
-            JOptionPane.showMessageDialog(null,"Funcionário cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null,"Funcionário cadastrado com sucesso! Para ele acessar o sistema precisa digitar seu CPF como login e senha.");
             TelaCadastroFuncionario.this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed

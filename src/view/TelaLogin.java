@@ -7,6 +7,7 @@ package view;
 import beans.Usuario;
 import javax.swing.JOptionPane;
 import dao.UsuarioDAO;
+import view.funcionario.TelaConsultarFuncionarioPAcesso;
 
 /**
  *
@@ -138,6 +139,7 @@ public class TelaLogin extends javax.swing.JFrame {
             telaPrincipal.setTLogin(txtLogin.getText());
             telaPrincipal.setTSenha(txtSenha.getText());
             telaPrincipal.setVisible(true);
+            telaPrincipal.jValidarAcesso(usuario);
             TelaLogin.this.dispose();
         }
         

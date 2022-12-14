@@ -47,11 +47,11 @@ public class Usuario {
         this.nivel = nivel;
     }
     
-    public int getAcesso() {
-        return nivel;
+     public int getAcesso() {
+        return acesso;
     }
 
     public void setAcesso(int acesso) {
-        this.nivel = acesso;
+        this.acesso = acesso;
     }
 }

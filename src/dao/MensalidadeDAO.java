@@ -39,6 +39,7 @@ public class MensalidadeDAO {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setInt(1, mensalidade.getRa());                        //gravar o RA
             stmt.setString(2, mensalidade.getMes());                    //gravar o mes
+            stmt.setDouble(3, mensalidade.getValor());                  //gravar o mes
             stmt.setString(4, mensalidade.getStatus());                 //gravar o status de pagamento
             stmt.setString(5, mensalidade.getDataPag());                //gravar a data de pagamento
             stmt.setString(6, mensalidade.getFormaPag());               //gravar a forma de pagamento
@@ -51,18 +52,19 @@ public class MensalidadeDAO {
     }
     
     //Query ler (read)
-    public Mensalidade getMensalidade(int ra){
+    public Mensalidade getMensalidade(String chave){
         String sql = "SELECT * FROM mensalidade WHERE ra = ?";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setInt(1, ra);                              //Obtem o ra
+            stmt.setInt(1, Integer.parseInt(chave));                              //Obtem o ra
             ResultSet rs = stmt.executeQuery();              //roda o comando no mysql
             Mensalidade mensalidade = new Mensalidade();
             //Primeiramente, posiciona o ResultSet na primeira posição
             rs.first();
-            mensalidade.setRa(rs.getInt(ra));
+            mensalidade.setRa(Integer.parseInt(chave));
             mensalidade.setMes(rs.getString("mes"));
             mensalidade.setValor(rs.getDouble("valor"));
+            mensalidade.setStatus(rs.getString("status"));
             mensalidade.setDataPag(rs.getString("datapag"));
             mensalidade.setFormaPag(rs.getString("formapag"));
             return mensalidade;
@@ -109,7 +111,7 @@ public class MensalidadeDAO {
         }
     }
     
-    public List<Mensalidade> getMetricas()
+    public List<Mensalidade> getMensalidade()
     {
         String sql = "SELECT * from mensalidade";
         try{
